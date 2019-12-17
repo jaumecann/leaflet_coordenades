@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leaflet coordenades</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<style>
+    body {
+       background-color: #a5b0b1;
+    }
+
+    #map {
+        height: 400px;
+        width: 500px;
+        margin:auto;
+    }
+</style>
+<body>
+    <h1 style="text-align:center; margin-top: 20px; color:white; font-family: 'Courier New', Courier, monospace;">Map</h1>
+    <div id="map"></div>
+    
+</body>
+
+
+<script>
+    var mymap = L.map('map').setView([41.387069, 2.169922], 16);
+
+    //41.387069, 2.169922
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    accessToken: 'pk.eyJ1IjoiamF1bWVpdCIsImEiOiJjazQ5bmpjbGMwNm03M2VwYnFwMXpna2p1In0.lcXKV6xOjCgZwfyyH45crw'
+}).addTo(mymap);
+
+    // ADDING MARKER
+
+    var marker = L.marker([41.386923, 2.166040]).addTo(mymap);
+    marker.bindPopup("Carrer de Balmes, 16.<br> 08007, Barcelona");
+    
+    </script>
+
+</html>
