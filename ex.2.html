@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Leaflet coordenades</title>
+    <title>Leaflet coordenades: map2</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -18,7 +18,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <style>
-    
+
+  body {
+       background-color: #c5b9c7;
+    }  
 
     #map {
         height: 400px;
@@ -27,7 +30,7 @@
     }
 </style>
 <body>
-    <h1 style="text-align:center; margin-top: 20px;">Map</h1>
+    <h1 style="text-align:center; margin-top: 20px; font-family: 'Courier New', Courier, monospace; color:white;">Map 2</h1>
     <div id="map"></div>
     
 </body>
@@ -46,16 +49,28 @@
 }).addTo(mymap);
 
     // ADDING MARKER
+
+    var marker;
    
     mymap.on('click', function(e) {
+
+
+    if (marker != undefined){
+        mymap.removeLayer(marker);
+    }    
 
     var lat = e.latlng.lat;
     var lng = e.latlng.lng;
 
     mymap.setView([lat, lng]).setZoom(18);
 
+    marker = L.marker([lat, lng]).addTo(mymap);
+    marker.bindPopup("Lat: " + lat + ",<br> Lon  " + lng).openPopup();
 
-    L.popup().setLatLng([lat, lng]).setContent("Lat: " + lat + ",<br> Lon  " + lng).openOn(mymap);
+    mymap.panTo([lat, lng]);
+
+
+    //L.popup().setLatLng([lat, lng]).setContent("Lat: " + lat + ",<br> Lon  " + lng).openOn(mymap);
 
    
 });
